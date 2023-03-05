@@ -16,3 +16,5 @@ Windows Powershell
 ## Usage
 
 Currently the only command that really works is Get-NWSForecast.  This will return a detailed forecast.
+
+![Alt text](DetailedForecast.png)
