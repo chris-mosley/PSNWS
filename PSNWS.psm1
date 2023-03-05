@@ -133,7 +133,7 @@ function Get-NWSConfig
 {
   try
   {
-    $config=(Get-Content -Path "$((Get-module -Name NationalWeatherService -ListAvailable).ModuleBase)\config.json" -ErrorAction Stop) | ConvertFrom-Json -ErrorAction Stop
+    $config=(Get-Content -Path "$((Get-module -Name PSNWS -ListAvailable).ModuleBase)\config.json" -ErrorAction Stop) | ConvertFrom-Json -ErrorAction Stop
     return $config
   }
   catch
