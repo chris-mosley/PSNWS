@@ -43,7 +43,7 @@ function Get-NWSZone {
 function Get-NWSForecast {
   [alias("Get-Forecast")]
   param($County)
-
+  #TODO: Allow Zone to be piped in from Get-NWSZone or Get-NWSCounty
   if($county)
   {
     $zone=(Get-NWSZone -County $County)
@@ -61,8 +61,13 @@ function Get-NWSForecast {
   }
   $forecast=(Invoke-RestMethod -uri "https://api.weather.gov/zones/public/$($zone.id)/forecast").properties.periods
 
-  Write-Host "Forecast for $($zone.name) County, $($zone.state)"
+  Write-Host "Forecast for $($zone.county) County, $($zone.state)"
   
+
+  foreach($cast in $forecast)
+  {
+    $cast.psobject.TypeNames.Insert(0,'NWS.DetailedForecast')
+  }
   return $forecast
 
 }
